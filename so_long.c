@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:24:32 by tberube-          #+#    #+#             */
-/*   Updated: 2022/03/30 14:01:52 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:04:34 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@ int	main()
 	// Make_A_Empty_Square(&image, 40, 5, 0x00FF0000, 25);
 	mlx_put_image_to_window(mlx, mlx_win, image.img, 0, 0);
 	mlx_loop(mlx);
+	//try
 }
