@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:24:32 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/01 09:22:27 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:29:12 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,42 +52,35 @@ t_data	image_scale_init(t_data *image, float scale, void *mlx)
 			my_mlx_pixel_put(&image_scale, x, y, color); //copi la couleur prise ulterieurement et la place dans la nouvelle image
 			y++;	
 		}
-		x++;	
+		x++;
 	}
 	// destroy old image au choix donc boolean
 	return(image_scale);
 }
 
-
-// void	Make_A_Empty_Square(t_data *data, int x, int y, int color)
+// void	init_image()
 // {
-// 	while (x <= 25)
-// 	{
-// 		my_mlx_pixel_put(data, x, y, color);
-// 		x++;
-// 	}
-// 	while (y <= 25)
-// 	{
-// 		my_mlx_pixel_put(data, x, y, color);
-// 		y++;	
-// 	}
-// 	while (x >= 5)
-// 	{
-// 		my_mlx_pixel_put(data, x, y, color);
-// 		x--;
-// 	}
-// 	while (y >= 5)
-// 	{
-// 		my_mlx_pixel_put(data, x, y, color);
-// 		y--;
-// 	}
-		
+// 	//
 // }
 
-int	close(int keycode, t_aff *key)
+void	aff_image(t_aff mlx, t_data img)
 {
-	mlx_destroy_window(key->mlx, key->mlx_win);
-	return(0);
+	t_data	image_player;
+	t_data	image_floor;
+	t_data	image_murs;
+	
+	image_player.img = mlx_xpm_file_to_image(mlx.mlx, "sprite/xpm/player.xpm", &image_player.width, &image_player.height);
+	image_floor.img = mlx_xpm_file_to_image(mlx.mlx, "sprite/xpm/floor.xpm", &image_floor.width, &image_floor.height);
+	image_murs.img = mlx_xpm_file_to_image(mlx.mlx, "sprite/xpm/murs.xpm", &image_murs.width, &image_murs.height);
+	image_player.addr = mlx_get_data_addr(image_player.img, &image_player.bits_per_pixel, &image_player.line_length, &image_player.endian);
+	image_floor.addr = mlx_get_data_addr(image_floor.img, &image_floor.bits_per_pixel, &image_floor.line_length, &image_floor.endian);
+	image_murs.addr = mlx_get_data_addr(image_murs.img, &image_murs.bits_per_pixel, &image_murs.line_length, &image_murs.endian);
+	image_player = image_scale_init(&image_player, 2, mlx.mlx);
+	image_floor = image_scale_init(&image_floor, 2.5, mlx.mlx);
+	image_murs = image_scale_init(&image_murs, 2, mlx.mlx);
+	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image_floor.img, 50, 50);
+	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image_player.img, 50, 50);
+	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image_murs.img, 1, 1);
 }
 
 int	main()
@@ -95,22 +88,14 @@ int	main()
 	t_aff	mlx;
 	t_data	image;
 	void	*player;
-	t_data	image_player;
 	
 	mlx.mlx = mlx_init();
 	mlx.mlx_win = mlx_new_window(mlx.mlx, 600, 600, "so_long");
 	image.img = mlx_new_image(mlx.mlx, 600, 600);
 	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, &image.line_length, &image.endian);
-	//Make_A_Empty_Square(&image, 5, 5, 0x00FF0000);
-	image_player.img = mlx_xpm_file_to_image(mlx.mlx, "sprite/xpm/player.xpm", &image_player.width, &image_player.height);
-	image_player.addr = mlx_get_data_addr(image_player.img, &image_player.bits_per_pixel, &image_player.line_length, &image_player.endian);
-	image_player = image_scale_init(&image_player, 2, mlx.mlx);
-	// image_player = image_scale_init(&image_player, 1, mlx);
-	//image_player = image_scale_init(&image_player, , mlx);
-	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image.img, 0, 0);
-	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image_player.img, 50, 50);
-	//mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image_scale_init(&image_player, 2, mlx.mlx).img, 100, 100);
-	mlx_hook(mlx.mlx_win, 2, 1L<<0, close, &mlx);
+	aff_image(mlx, image);
+	mlx_hook(mlx.mlx_win, 17, 0L, win_close, &mlx);
+	mlx_key_hook(mlx.mlx_win, hook_win_keycode, &mlx);
 	mlx_loop(mlx.mlx);
 	//try
 	//structure pour le scale

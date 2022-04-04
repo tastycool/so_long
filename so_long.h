@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:43:51 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/01 09:07:12 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/04 14:28:58 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "./mlx/mlx.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct s_data
 {
@@ -39,5 +40,8 @@ typedef struct s_perso
 {
 	
 }	t_perso;
+
+int	win_close(t_aff *key);
+int	hook_win_keycode(int keycode, t_aff *key);
 
 #endif
