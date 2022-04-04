@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:24:32 by tberube-          #+#    #+#             */
-/*   Updated: 2022/03/31 10:49:57 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/01 09:22:27 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,28 +84,34 @@ t_data	image_scale_init(t_data *image, float scale, void *mlx)
 		
 // }
 
+int	close(int keycode, t_aff *key)
+{
+	mlx_destroy_window(key->mlx, key->mlx_win);
+	return(0);
+}
+
 int	main()
 {
-	void 	*mlx;
-	void	*mlx_win;
+	t_aff	mlx;
 	t_data	image;
 	void	*player;
 	t_data	image_player;
 	
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 600, 600, "so_long");
-	image.img = mlx_new_image(mlx, 600, 600);
+	mlx.mlx = mlx_init();
+	mlx.mlx_win = mlx_new_window(mlx.mlx, 600, 600, "so_long");
+	image.img = mlx_new_image(mlx.mlx, 600, 600);
 	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, &image.line_length, &image.endian);
 	//Make_A_Empty_Square(&image, 5, 5, 0x00FF0000);
-	image_player.img = mlx_xpm_file_to_image(mlx, "sprite/xpm/player.xpm", &image_player.width, &image_player.height);
+	image_player.img = mlx_xpm_file_to_image(mlx.mlx, "sprite/xpm/player.xpm", &image_player.width, &image_player.height);
 	image_player.addr = mlx_get_data_addr(image_player.img, &image_player.bits_per_pixel, &image_player.line_length, &image_player.endian);
-	image_player = image_scale_init(&image_player, 3, mlx);
+	image_player = image_scale_init(&image_player, 2, mlx.mlx);
 	// image_player = image_scale_init(&image_player, 1, mlx);
 	//image_player = image_scale_init(&image_player, , mlx);
-	mlx_put_image_to_window(mlx, mlx_win, image.img, 0, 0);
-	mlx_put_image_to_window(mlx, mlx_win, image_player.img, 50, 50);
-	mlx_put_image_to_window(mlx, mlx_win, image_scale_init(&image_player, 2, mlx).img, 100, 100);
-	mlx_loop(mlx);
+	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image.img, 0, 0);
+	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image_player.img, 50, 50);
+	//mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image_scale_init(&image_player, 2, mlx.mlx).img, 100, 100);
+	mlx_hook(mlx.mlx_win, 2, 1L<<0, close, &mlx);
+	mlx_loop(mlx.mlx);
 	//try
 	//structure pour le scale
 	//fonction pour scale

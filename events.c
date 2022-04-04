@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/29 11:43:51 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/01 09:07:12 by tberube-         ###   ########.fr       */
+/*   Created: 2022/04/01 08:24:54 by tberube-          #+#    #+#             */
+/*   Updated: 2022/04/01 08:40:20 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-#include "./mlx/mlx.h"
-#include <stdio.h>
+enum {
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	// ON_MOUSEDOWN = 4,
+	// ON_MOUSEUP = 5,
+	// ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
 
-typedef struct s_data
-{
-	
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		height;
-	int		width;
-	
-}	t_data;
-
-typedef struct s_aff
-{
-	void	*mlx;
-	void	*mlx_win;
-}	t_aff;
-
-typedef struct s_perso
-{
-	
-}	t_perso;
-
-#endif
+// usage:
+mlx_hook(vars.win, ON_DESTROY, 0, close, &vars);
