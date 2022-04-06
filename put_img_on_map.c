@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maping.c                                           :+:      :+:    :+:   */
+/*   put_img_on_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/04 14:32:12 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/04 14:36:53 by tberube-         ###   ########.fr       */
+/*   Created: 2022/04/06 10:22:44 by tberube-          #+#    #+#             */
+/*   Updated: 2022/04/06 10:28:20 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+# include "so_long.h"
 
-int	mapping_width(int fd)
-{
-	open(fd)
-}
-
-int	mapping_height(int fd)
+void	collectible_on_map(t_aff image, t_data pos_x, t_data pos_y)
 {
 	
 }

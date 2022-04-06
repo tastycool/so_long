@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:24:32 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/04 14:29:12 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:06:05 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,8 @@ t_data	image_scale_init(t_data *image, float scale, void *mlx)
 // 	//
 // }
 
-void	aff_image(t_aff mlx, t_data img)
+void	aff_image(t_aff mlx, t_data img, t_putContente sprite)
 {
-	t_data	image_player;
-	t_data	image_floor;
-	t_data	image_murs;
 	
 	image_player.img = mlx_xpm_file_to_image(mlx.mlx, "sprite/xpm/player.xpm", &image_player.width, &image_player.height);
 	image_floor.img = mlx_xpm_file_to_image(mlx.mlx, "sprite/xpm/floor.xpm", &image_floor.width, &image_floor.height);
@@ -81,22 +78,12 @@ void	aff_image(t_aff mlx, t_data img)
 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image_floor.img, 50, 50);
 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image_player.img, 50, 50);
 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image_murs.img, 1, 1);
+	//j:ai merder avec les struct
 }
 
-int	main()
+int	main(int argc, char **argv)
 {
-	t_aff	mlx;
-	t_data	image;
-	void	*player;
-	
-	mlx.mlx = mlx_init();
-	mlx.mlx_win = mlx_new_window(mlx.mlx, 600, 600, "so_long");
-	image.img = mlx_new_image(mlx.mlx, 600, 600);
-	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, &image.line_length, &image.endian);
-	aff_image(mlx, image);
-	mlx_hook(mlx.mlx_win, 17, 0L, win_close, &mlx);
-	mlx_key_hook(mlx.mlx_win, hook_win_keycode, &mlx);
-	mlx_loop(mlx.mlx);
+	valide_check(argv[1]);
 	//try
 	//structure pour le scale
 	//fonction pour scale

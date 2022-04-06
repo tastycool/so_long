@@ -6,21 +6,20 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 08:24:54 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/04 13:46:39 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/04 15:35:07 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// enum {
-// 	ON_KEYDOWN = 2,
-// 	ON_KEYUP = 3,
-// 	// ON_MOUSEDOWN = 4,
-// 	// ON_MOUSEUP = 5,
-// 	// ON_MOUSEMOVE = 6,
-// 	ON_EXPOSE = 12,
-// 	ON_DESTROY = 17
-// };
+void	keycode_init(t_perso *move)
+{
+	move->escape = 53;
+	move->a = 0;
+	move->s = 1;
+	move->d = 2;
+	move->w = 13;
+}
 
 int	win_close(t_aff *key)
 {
