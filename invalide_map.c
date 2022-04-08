@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_img_on_map.c                                   :+:      :+:    :+:   */
+/*   invalide_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/06 10:22:44 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/07 15:00:29 by tberube-         ###   ########.fr       */
+/*   Created: 2022/04/07 09:27:42 by tberube-          #+#    #+#             */
+/*   Updated: 2022/04/07 11:52:06 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
-// void	collectible_on_map(t_aff image, t_data pos_x, t_data pos_y)
-// {
-	
-// }
+void	quit(int fd)
+{
+	close(fd);
+	ft_putstr_fd("Map invalid", 2);
+	exit(0);
+}

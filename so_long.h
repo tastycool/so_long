@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:43:51 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/06 15:07:17 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/08 11:02:24 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 # define SO_LONG_H
 
 #include "./mlx/mlx.h"
-#include "Get_next_line/get_next_line.h"
+#include "GNL/get_next_line.h"
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include "libft/libft.h"
 
-// #define GRID "10"
-// #define VALID_SYMBOLS "PCE"
+#define GRID '1'
+#define VALID_SYMBOLS "PCE10"
 
 typedef struct s_data
 {
@@ -44,9 +44,11 @@ typedef	struct s_putContente
 	void	*image_exit;
 	int		pos_x;
 	int		pos_y;
-	int		width;
-	int		height;
+	int		width_grid;
+	int		height_grid;
 	char 	**map;
+	int		i;
+	int		j;
 } t_putContente;
 
 typedef struct s_aff
@@ -76,8 +78,22 @@ enum {
 };
 
 
-int	win_close(t_aff *key);
-int	hook_win_keycode(int keycode, t_aff *key);
-
+void			check_grid1(int fd, t_putContente *contente);
+void			check_grid2(int fd, t_putContente *contente);
+void			check_grid3(int fd, t_putContente *contente);
+void			check_grid4(int fd, t_putContente *contente);
+//void			keycode_init(t_perso *move);
+int				win_close(t_aff *key);
+int				hook_win_close(int keycode, t_aff *key);
+void			quit(int fd);
+void			doublon_check(int fd, t_putContente *contente);
+void			check_grid(int fd, t_putContente *contente);
+void			check_symbol(int fd, t_putContente *contente);
+void			valid_check(int fd, t_putContente *contente);
+void			mapping_length(int fd, t_putContente *contente, char *map_file);
+void			aff_image(t_aff mlx, t_data img, t_putContente sprite);
+t_data			image_scale_init(t_data *image, float scale, void *mlx);
+unsigned int	get_colors(t_data *data, int x, int y);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 # define debug printf("debug\n");
 #endif
