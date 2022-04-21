@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 14:04:42 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/08 11:55:23 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:32:54 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,22 @@ void	check_grid2(int fd, t_putContente *contente)
 	contente->i -= 1;
 	while (contente->j < contente->height_grid)
 	{
-		contente->j++;
 		if (contente->map[contente->j][contente->i] != GRID)
 			quit(fd);
+		contente->j++;
+		
 	}	
 }
 
 void	check_grid3(int fd, t_putContente *contente)
 {
+	contente->i -= 1;
+	contente->j -= 1;
 	while (contente->i > 0)
 	{
-		contente->i--;
 		if (contente->map[contente->j][contente->i] != GRID)
 			quit(fd);
+		contente->i--;
 	}
 }
 
@@ -47,8 +50,8 @@ void	check_grid4(int fd, t_putContente *contente)
 {
 	while (contente->j > 0)
 	{
-		contente->j--;
 		if (contente->map[contente->j][contente->i] != GRID)
 			quit(fd);
+		contente->j--;
 	}
 }

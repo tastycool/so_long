@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:32:12 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/08 11:49:25 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:23:13 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	mapping_length(int fd, t_putContente *contente, char *map_file)
 {
-	t_data			*data;
+	//t_data			*data;
 	char			*str;
 	char			*tmp;
-	
+	contente->height_grid = 1;
 	str = get_next_line(fd);
 	tmp = ft_strtrim(str, "\n");
 	free(str);
@@ -27,14 +27,13 @@ void	mapping_length(int fd, t_putContente *contente, char *map_file)
 		contente->height_grid++;
 	if (!fd)
 		quit(fd);
-	contente->map = (char **)malloc((contente->height_grid + 1) * sizeof(char *));
-	contente->map[contente->height_grid + 1] = NULL;
+	contente->map = (char **)ft_calloc(contente->height_grid + 1, sizeof(char *));
 	if (contente->map == NULL)
 		quit(fd);
 	close(fd);
 	fd = open(map_file, O_RDONLY);
 	valid_check(fd, contente);
-	data = malloc(sizeof(t_data));
+//	data = malloc(sizeof(t_data));
 	//affichage(data);
 }
 

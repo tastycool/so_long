@@ -6,34 +6,34 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:24:32 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/07 15:33:42 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:53:52 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+// void	my_mlx_pixel_put(t_texture *data, int x, int y, int color)
 // {
 // 	char	*dst;
 
 	
 // 	// regarder pour proteger si out of windows return rien
-// 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+// 	dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
 // 	*(unsigned int*)dst = color;
 // }
 
-// unsigned int	get_colors(t_data *data, int x, int y)
+// unsigned int	get_colors(t_texture *data, int x, int y)
 // {
 // 	char	*dst;
 
 // 	// regarder pour proteger si out of windows return noir
-// 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+// 	dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
 // 	return(*(unsigned int*)dst);
 // }
 
-// t_data	image_scale_init(t_data *image, float scale, void *mlx)
+// t_texture	image_scale_init(t_texture *image, float scale, void *mlx)
 // {
-// 	t_data			image_scale;
+// 	t_texture		image_scale;
 // 	float			x;
 // 	float			y;
 // 	unsigned int	color;
@@ -41,7 +41,7 @@
 // 	image_scale.width = image->width * scale;
 // 	image_scale.height = image->height * scale;
 // 	image_scale.img = mlx_new_image(mlx, image_scale.width, image_scale.height);
-// 	image_scale.addr = mlx_get_data_addr(image_scale.img, &image_scale.bits_per_pixel, &image_scale.line_length, &image_scale.endian);
+// 	image_scale.addr = mlx_get_data_addr(image_scale.img, &image_scale.bpp, &image_scale.line_length, &image_scale.endian);
 // 	x = 0;
 // 	while (x < (image->width * scale))
 // 	{
@@ -58,36 +58,35 @@
 // 	return(image_scale);
 // }
 
-// // void	init_image()
-// // {
-// // 	//
-// // }
-
-// void	aff_image(t_aff mlx, t_data img, t_putContente sprite)
-// {
-	
-// 	image_player.img = mlx_xpm_file_to_image(mlx.mlx, "sprite/xpm/player.xpm", &image_player.width, &image_player.height);
-// 	image_floor.img = mlx_xpm_file_to_image(mlx.mlx, "sprite/xpm/floor.xpm", &image_floor.width, &image_floor.height);
-// 	image_murs.img = mlx_xpm_file_to_image(mlx.mlx, "sprite/xpm/murs.xpm", &image_murs.width, &image_murs.height);
-// 	image_player.addr = mlx_get_data_addr(image_player.img, &image_player.bits_per_pixel, &image_player.line_length, &image_player.endian);
-// 	image_floor.addr = mlx_get_data_addr(image_floor.img, &image_floor.bits_per_pixel, &image_floor.line_length, &image_floor.endian);
-// 	image_murs.addr = mlx_get_data_addr(image_murs.img, &image_murs.bits_per_pixel, &image_murs.line_length, &image_murs.endian);
-// 	image_player = image_scale_init(&image_player, 2, mlx.mlx);
-// 	image_floor = image_scale_init(&image_floor, 2.5, mlx.mlx);
-// 	image_murs = image_scale_init(&image_murs, 2, mlx.mlx);
-// 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image_floor.img, 50, 50);
-// 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image_player.img, 50, 50);
-// 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, image_murs.img, 1, 1);
-// 	//j:ai merder avec les struct
-// }
 
 int main(int argc, char **argv)
 {
 	(void)argc;
-	t_putContente contente;
+	t_game 	game;
+	t_aff	mlx;
+	//int				keycode;
+	t_putContente 	contente;
+	//t_data			img;
+	//t_aff			mlx;
 	int fd;
 	
+	//keycode = 0;
+	mlx.mlx = mlx_init();
 	fd = open(argv[1], O_RDONLY);
-	//contente = (t_putContente *)malloc(sizeof(t_putContente));
 	mapping_length(fd, &contente, argv[1]);
+	game.map = (char **)ft_calloc(contente.height_grid + 1, sizeof(char *));
+	dup_map(contente.map, game.map);
+	//load_texture(&mlx, &game);
+	
+	mlx.mlx_win = mlx_new_window(mlx.mlx, 1920, 1080, "so_long");
+	
+	mlx.img = mlx_new_image(mlx.mlx, 1920, 1080);
+	mlx.addr = mlx_get_data_addr(mlx.img, &mlx.bpp, &mlx.line_length, &mlx.endian);
+	load_textures(mlx.mlx, &game);
+	//mlx_hook(mlx.mlx_win , 2, 0, hook_win_close, &mlx);
+	mlx_close(&mlx);
+	// hook_win_close(keycode, mlx.mlx);
+	// win_close(mlx.mlx_win);
+	//aff_image(mlx, img);
+	mlx_loop(mlx.mlx);
 }

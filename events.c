@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 08:24:54 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/07 14:33:15 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:17:01 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,21 @@
 // 	move->w = 13;
 // }
 
-int	win_close(t_aff *key)
+int	win_close(t_aff *mlx, t_game *game)
 {
-	mlx_destroy_window(key->mlx, key->mlx_win);
+	mlx_destroy_image(mlx->mlx, game->floor.img);
 	exit(0);
 }
 
-int	hook_win_close(int keycode, t_aff *key)
+int	hook_win_close(int keycode)
 {
 	if (keycode == 53)
-	{
-		mlx_destroy_window(key->mlx, key->mlx_win);
 		exit (0);
-	}
 	return (0);
+}
+
+void	mlx_close(t_aff	*mlx)
+{
+	mlx_hook(mlx->mlx_win , 2, 1L<<0, hook_win_close, &mlx);
+	mlx_hook(mlx->mlx_win , ON_DESTROY, 0, win_close, &mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:32:12 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/08 11:30:59 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:25:36 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,24 @@ void	doublon_check(int fd, t_putContente *contente)
 	int	P;
 	int	E;
 	
-	contente->i = 0;
 	contente->j = 0;
 	P = 0;
 	E = 0;
 	while (contente->map[contente->j])
-	{
-		if (E > 1 || P > 1)
-			quit(fd);
-		if (contente->map[contente->j][contente->i] == 'P')
-			P++;
-		if (contente->map[contente->j][contente->i] == 'E')
-			E++;
-	 	if (contente->map[contente->j][contente->i] == '\0')
+	{	
+		contente->i = 0;
+		while (contente->map[contente->j][contente->i])
 		{
-			contente->j++;
-			contente->i = 0;
-		}
-	 	else
+			if (contente->map[contente->j][contente->i] == 'P')
+				P++;
+			else if (contente->map[contente->j][contente->i] == 'E')
+				E++;
 			contente->i++;
+		}
+		contente->j++;
 	}
+	if (E != 1 || P != 1)
+		quit(fd);
 	check_grid(fd, contente);
 
 	
@@ -83,11 +81,11 @@ void	valid_check(int fd, t_putContente *contente)
 	char	*str;
 	
 	// str = get_next_line(fd);
-	// contente->j = 0;
+	contente->j = 0;
 	// contente->map[contente->j] = ft_strtrim(str, "\n");
 	// free(str);
 	// contente->j++;
-	while(contente->j <= contente->height_grid)
+	while(contente->j < contente->height_grid)
 	{
 		str = get_next_line(fd);
 		contente->map[contente->j] = ft_strtrim(str, "\n");
