@@ -6,36 +6,36 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 08:24:54 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/13 16:17:01 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/27 09:06:33 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// void	keycode_init(t_perso *move)
-// {
-// 	move->escape = 53;
-// 	move->a = 0;
-// 	move->s = 1;
-// 	move->d = 2;
-// 	move->w = 13;
-// }
-
-int	win_close(t_aff *mlx, t_game *game)
-{
-	mlx_destroy_image(mlx->mlx, game->floor.img);
-	exit(0);
-}
-
-int	hook_win_close(int keycode)
+int	key_hook_move(int keycode, t_game *game)
 {
 	if (keycode == 53)
 		exit (0);
-	return (0);
+	if (keycode == 0)
+		left_move(game);
+	if (keycode == 1)
+		down_move(game);
+	if (keycode == 2)
+		right_move(game);
+	if (keycode == 13)
+		top_move(game);
+	return (0);	
 }
 
-void	mlx_close(t_aff	*mlx)
+int	win_close()
 {
-	mlx_hook(mlx->mlx_win , 2, 1L<<0, hook_win_close, &mlx);
-	mlx_hook(mlx->mlx_win , ON_DESTROY, 0, win_close, &mlx);
+	exit (0);
+	return(0);
+}
+
+
+void	mlx_close(t_aff	*mlx, t_game *game)
+{
+	mlx_hook(mlx->mlx_win , 2, 1L<<0, key_hook_move, game);
+	mlx_hook(mlx->mlx_win , ON_DESTROY, 0, win_close, mlx);
 }

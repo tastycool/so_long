@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:43:51 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/13 17:15:42 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/27 09:46:34 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,6 @@ typedef struct s_aff
 	int		endian;
 }	t_aff;
 
-typedef struct s_movement
-{
-	int	escape;
-	int	w;
-	int	a;
-	int	s;
-	int	d;
-	
-}	t_movement;
-
-
 typedef enum keypress {
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
@@ -96,6 +85,7 @@ typedef struct s_game
 	t_texture		wall;
 	t_texture		collectible;
 	t_texture		exit;
+	char			move;
 	char 			**map;
 	
 } t_game;
@@ -106,7 +96,7 @@ void			check_grid2(int fd, t_putContente *contente);
 void			check_grid3(int fd, t_putContente *contente);
 void			check_grid4(int fd, t_putContente *contente);
 //void			keycode_init(t_perso *move);
-int				win_close(t_aff *mlx, t_game *game);
+int				win_close();
 int				hook_win_close(int keycode);
 void			quit(int fd);
 void			doublon_check(int fd, t_putContente *contente);
@@ -116,11 +106,13 @@ void			valid_check(int fd, t_putContente *contente);
 void			mapping_length(int fd, t_putContente *contente, char *map_file);
 void			dup_map(char **src, char **dest);
 void			load_textures(void *mlx, t_game *game);
-void			mlx_close(t_aff	*mlx);
+void			mlx_close(t_aff	*mlx, t_game *game);
 
 void			aff_image(t_aff *mlx, t_game *img);
 void			*image_scale_init(t_texture *image, float scale, void *mlx);
 unsigned int	get_colors(t_texture *data, int x, int y);
 void			my_mlx_pixel_put(t_texture *data, int x, int y, int color);
+void			put_image_on_symbol(t_game *game, t_aff *mlx);
+void			*image_scale_init(t_texture *image, float scale, void *mlx);
 # define debug printf("debug\n");
 #endif

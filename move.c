@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/30 15:19:00 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/25 10:15:07 by tberube-         ###   ########.fr       */
+/*   Created: 2022/04/26 15:46:00 by tberube-          #+#    #+#             */
+/*   Updated: 2022/04/27 09:45:38 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	left_move(t_game *game)
 {
-	unsigned char	*o_s;
-	unsigned char	o_c;
-
-	o_s = (unsigned char *)s;
-	o_c = (unsigned char)c;
-	while (n--)
-	{
-		if (*o_s == o_c)
-			return (o_s);
-		o_s++;
-	}
-	return (0);
+	ft_putchar_fd
+}
+void	down_move(t_game *game)
+{
+	
+}
+void	right_move(t_game *game)
+{
+	
+}
+void	top_move(t_game *game)
+{
+	
 }

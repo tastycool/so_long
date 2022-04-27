@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 13:31:52 by tberube-          #+#    #+#             */
-/*   Updated: 2021/10/28 09:58:27 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/25 10:15:26 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 static int	len_int(int n)
 {
 	int		len;
-	int		negative;
 
 	len = 0;
-	negative = 0;
 	if (n < 0)
 	{
 		len++;
@@ -58,13 +56,11 @@ char	*ft_itoa(int n)
 {
 	int		len;
 	char	*ret;
-	int		negative;
 
 	if (n == 0)
 		return (ft_strdup("0"));
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	negative = 0;
 	len = len_int(n);
 	ret = ft_calloc(len + 1, sizeof(char));
 	if (!ret)

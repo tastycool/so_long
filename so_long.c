@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:24:32 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/13 16:53:52 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:35:36 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,23 @@ int main(int argc, char **argv)
 	(void)argc;
 	t_game 	game;
 	t_aff	mlx;
-	//int				keycode;
 	t_putContente 	contente;
-	//t_data			img;
-	//t_aff			mlx;
 	int fd;
 	
-	//keycode = 0;
 	mlx.mlx = mlx_init();
 	fd = open(argv[1], O_RDONLY);
 	mapping_length(fd, &contente, argv[1]);
 	game.map = (char **)ft_calloc(contente.height_grid + 1, sizeof(char *));
 	dup_map(contente.map, game.map);
-	//load_texture(&mlx, &game);
-	
-	mlx.mlx_win = mlx_new_window(mlx.mlx, 1920, 1080, "so_long");
-	
-	mlx.img = mlx_new_image(mlx.mlx, 1920, 1080);
+	mlx.mlx_win = mlx_new_window(mlx.mlx, contente.width_grid * 64, contente.height_grid * 88, "so_long"); ////// widht and height
+	mlx.img = mlx_new_image(mlx.mlx, contente.width_grid * 64, contente.height_grid * 88);
 	mlx.addr = mlx_get_data_addr(mlx.img, &mlx.bpp, &mlx.line_length, &mlx.endian);
 	load_textures(mlx.mlx, &game);
 	//mlx_hook(mlx.mlx_win , 2, 0, hook_win_close, &mlx);
-	mlx_close(&mlx);
+	//aff_image(&mlx, &game);
+	put_image_on_symbol(&game, &mlx);
+	//key_hook_move()
+	mlx_close(&mlx, &game);
 	// hook_win_close(keycode, mlx.mlx);
 	// win_close(mlx.mlx_win);
 	//aff_image(mlx, img);
