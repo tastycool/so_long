@@ -6,7 +6,7 @@
 #    By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 14:17:42 by tberube-          #+#    #+#              #
-#    Updated: 2022/04/13 17:14:09 by tberube-         ###   ########.fr        #
+#    Updated: 2022/04/28 12:03:49 by tberube-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ HEADER = so_long.h
 
 NAME = so_long
 SRCS = check_grid.c events.c invalide_map.c map_check.c \
-		mapping.c put_img_on_map.c so_long.c dupMap.c load_textures.c
+		mapping.c so_long.c dupMap.c load_textures.c \
+		move.c scale_image.c move_event.c put_image.c \
 		
 GET_NEXT_LINE = get_next_line.c get_next_line_utils.c 
 GNL_HEADER = ./GNL/get_next_line.h

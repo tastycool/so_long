@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:32:12 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/12 16:25:36 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/28 11:35:32 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,28 @@
 
 void	doublon_check(int fd, t_putContente *contente)
 {
-	int	P;
-	int	E;
-	
+	int	p;
+	int	e;
+
 	contente->j = 0;
-	P = 0;
-	E = 0;
+	p = 0;
+	e = 0;
 	while (contente->map[contente->j])
 	{	
 		contente->i = 0;
 		while (contente->map[contente->j][contente->i])
 		{
 			if (contente->map[contente->j][contente->i] == 'P')
-				P++;
+				p++;
 			else if (contente->map[contente->j][contente->i] == 'E')
-				E++;
+				e++;
 			contente->i++;
 		}
 		contente->j++;
 	}
-	if (E != 1 || P != 1)
+	if (e != 1 || p != 1)
 		quit(fd);
 	check_grid(fd, contente);
-
-	
-	//check ton contoure de map
-	//check les doublon de symbole P et E et compte les C (collectible)/struct
 }
 
 void	check_grid(int fd, t_putContente *contente)
@@ -50,26 +46,23 @@ void	check_grid(int fd, t_putContente *contente)
 	check_grid2(fd, contente);
 	check_grid3(fd, contente);
 	check_grid4(fd, contente);
-	//check ton contoure de map
-	//est ce que la map est carré ou rectangle
-	//est ce que ma premiere et derniere ligne son des 1
-	//est de que ma premiere et derniere lettre de ma str est bien 1
 }
 
 void	check_symbol(int fd, t_putContente *contente)
 {
-	
 	contente->j = 0;
 	while (contente->map[contente->j])
 	{
 		contente->i = 0;
 		while (contente->map[contente->j][contente->i] != '\0')
 		{
-			if(!ft_strchr(VALID_SYMBOLS, contente->map[contente->j][contente->i]))
+			if (!ft_strchr(VALID_SYMBOLS, \
+			contente->map[contente->j][contente->i]))
 				quit(fd);
 			contente->i++;
 		}
-		if (contente->i < contente->width_grid || contente->i > contente->width_grid)
+		if (contente->i < contente->width_grid || \
+		contente->i > contente->width_grid)
 			quit(fd);
 		contente->j++;
 	}
@@ -79,13 +72,9 @@ void	check_symbol(int fd, t_putContente *contente)
 void	valid_check(int fd, t_putContente *contente)
 {
 	char	*str;
-	
-	// str = get_next_line(fd);
+
 	contente->j = 0;
-	// contente->map[contente->j] = ft_strtrim(str, "\n");
-	// free(str);
-	// contente->j++;
-	while(contente->j < contente->height_grid)
+	while (contente->j < contente->height_grid)
 	{
 		str = get_next_line(fd);
 		contente->map[contente->j] = ft_strtrim(str, "\n");
@@ -94,7 +83,5 @@ void	valid_check(int fd, t_putContente *contente)
 			quit(fd);
 		contente->j++;
 	}
-	// contente->map[contente->j - 1][contente->width_grid - 1] = '\n';
-	// contente->map[contente->j - 1][contente->width_grid] = '\0';
-	check_symbol(fd, contente);	
+	check_symbol(fd, contente);
 }

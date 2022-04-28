@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dupMap.c                                           :+:      :+:    :+:   */
+/*   ft_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 12:03:23 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/28 13:36:13 by tberube-         ###   ########.fr       */
+/*   Created: 2022/04/28 13:09:37 by tberube-          #+#    #+#             */
+/*   Updated: 2022/04/28 13:17:21 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	dup_map(char **src, char **dest)
+void	ft_free_tab(char **tab)
 {
-	int i;
+	int	y;
 
-	i = 0;
-	while (src[i])
+	y = 0;
+	while (tab[y])
 	{
-		dest[i] = ft_strdup(src[i]);
-		i++;
+		free(tab[y]);
+		y++;
 	}
-	//ft_free_tab(src);
+	free(tab);
 }

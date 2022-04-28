@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_img_on_map.c                                   :+:      :+:    :+:   */
+/*   move_event.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/06 10:22:44 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/07 15:00:29 by tberube-         ###   ########.fr       */
+/*   Created: 2022/04/28 09:51:51 by tberube-          #+#    #+#             */
+/*   Updated: 2022/04/28 12:09:36 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "so_long.h"
+#include "so_long.h"
 
-// void	collectible_on_map(t_aff image, t_data pos_x, t_data pos_y)
-// {
-	
-// }
+void	minus_col(t_game *game)
+{
+	game->coll--;
+}
+
+void	exit_map(t_game *game)
+{
+	if (game->coll == 0)
+		win_close(game);
+}

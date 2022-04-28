@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 09:25:10 by tberube-          #+#    #+#             */
-/*   Updated: 2021/12/27 19:27:34 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/28 12:02:17 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,4 @@ char	**ft_split(char	const *s, char c)
 	copy(trim_tmp, c, ret);
 	free(trim_tmp);
 	return (ret);
-}
-int main()
-{
-	char	str[] = "sal1111ut comm1ent ça11 vas";
-	printf("%s\n", *ft_split(str, '1'));
 }

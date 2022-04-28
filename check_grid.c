@@ -6,11 +6,11 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 14:04:42 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/12 16:32:54 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/28 11:09:37 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "so_long.h"
+#include "so_long.h"
 
 void	check_grid1(int fd, t_putContente *contente)
 {
@@ -30,7 +30,6 @@ void	check_grid2(int fd, t_putContente *contente)
 		if (contente->map[contente->j][contente->i] != GRID)
 			quit(fd);
 		contente->j++;
-		
 	}	
 }
 
