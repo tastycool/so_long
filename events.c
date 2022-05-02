@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 08:24:54 by tberube-          #+#    #+#             */
-/*   Updated: 2022/05/02 09:36:39 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/05/02 09:38:14 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	key_hook_move(int keycode, t_game *game)
 {
 	find_p(game);
 	if (keycode == 53)
-		win_close(game);
+		win_close();
 	if (keycode == 0)
 		left_move(game);
 	if (keycode == 1)

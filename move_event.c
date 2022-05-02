@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 09:51:51 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/28 12:09:36 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/05/02 09:38:49 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void	minus_col(t_game *game)
 void	exit_map(t_game *game)
 {
 	if (game->coll == 0)
-		win_close(game);
+		win_close();
 }
