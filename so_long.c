@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:24:32 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/28 13:32:01 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/05/02 09:30:23 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ int	main(int argc, char **argv)
 	int				fd;
 
 	(void)argc;
-	mlx.mlx = mlx_init();
 	game.mlx = &mlx;
 	fd = open(argv[1], O_RDONLY);
+	if (ft_strendcmp(argv[1], ".ber") != 1)
+		quit(fd);
 	mapping_length(fd, &contente, argv[1]);
+	mlx.mlx = mlx_init();
 	game.map = (char **)ft_calloc(contente.height_grid + 1, sizeof(char *));
 	dup_map(contente.map, game.map);
 	mlx.mlx_win = mlx_new_window(mlx.mlx, contente.width_grid * 64, \

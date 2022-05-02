@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_tab.c                                      :+:      :+:    :+:   */
+/*   ft_strendcmp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 13:09:37 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/28 14:28:57 by tberube-         ###   ########.fr       */
+/*   Created: 2022/05/02 08:52:50 by tberube-          #+#    #+#             */
+/*   Updated: 2022/05/02 09:27:45 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-void	ft_free_tab(char **tab)
+int	ft_strendcmp(const char *s, const char *suffix)
 {
-	int	y;
+	int	j;
+	int	i;
 
-	y = 0;
-	while (tab[y])
+	i = 0;
+	j = 0;
+	if (!s || !suffix)
+		return (0);
+	i = (ft_strlen(s) - ft_strlen(suffix));
+	while (s[i])
 	{
-		free(tab[y]);
-		y++;
+		if (s[i] != suffix[j])
+			return (0);
+		i++;
+		j++;
 	}
-	free(tab);
+	return (1);
 }

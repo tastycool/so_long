@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:43:51 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/28 12:51:14 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/05/02 09:36:44 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void			check_grid1(int fd, t_putContente *contente);
 void			check_grid2(int fd, t_putContente *contente);
 void			check_grid3(int fd, t_putContente *contente);
 void			check_grid4(int fd, t_putContente *contente);
-int				win_close(t_game *game);
+int				win_close(void);
 int				hook_win_close(int keycode);
 void			quit(int fd);
 void			doublon_check(int fd, t_putContente *contente);

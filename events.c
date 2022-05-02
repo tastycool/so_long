@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 08:24:54 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/28 13:16:12 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/05/02 09:36:39 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,8 @@ int	key_hook_move(int keycode, t_game *game)
 	return (0);
 }
 
-int	win_close(t_game *game)
+int	win_close(void)
 {
-	int	y;
-
-	y = 0;
-	ft_free_tab(game->map);
-	mlx_destroy_image(game->mlx->mlx, game->mlx->img);
-	mlx_destroy_window(game->mlx->mlx, game->mlx->mlx_win);
 	exit (0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 12:03:23 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/28 13:36:13 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/04/28 14:27:46 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	dup_map(char **src, char **dest)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (src[i])
@@ -22,5 +22,5 @@ void	dup_map(char **src, char **dest)
 		dest[i] = ft_strdup(src[i]);
 		i++;
 	}
-	//ft_free_tab(src);
+	ft_free_tab(src);
 }

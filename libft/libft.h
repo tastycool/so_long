@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 11:29:03 by tberube-          #+#    #+#             */
-/*   Updated: 2022/04/28 13:12:32 by tberube-         ###   ########.fr       */
+/*   Updated: 2022/05/02 09:05:03 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(size_t n, size_t base_len, char *base, int fd);
 void	ft_free_tab(char **tab);
+int		ft_strendcmp(const char *s, const char *suffix);
 
 typedef struct s_list
 {
